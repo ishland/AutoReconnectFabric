@@ -1,12 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "com.ishland.fabric.autoreconnect.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinConnectScreen",
+    "MixinDisconnectedScreen"
   ],
   "client": [
-    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

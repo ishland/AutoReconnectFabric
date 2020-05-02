@@ -1,37 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "autoreconnect",
   "version": "${version}",
-
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "AutoReconnectFabric",
+  "description": "Get reconnected when kicked or networking issue",
   "authors": [
-    "Me!"
+    "ishland"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/ishlandbukkit/AutoReconnectFabric"
   },
-
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
-  "environment": "*",
+  "license": "AGPL-3.0",
+  "environment": "client",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.ishland.fabric.autoreconnect.EntryPoint"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "fabric.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.7.4",
-    "fabric": "*",
     "minecraft": "1.15.x"
-  },
-  "suggests": {
-    "flamingo": "*"
   }
 }
