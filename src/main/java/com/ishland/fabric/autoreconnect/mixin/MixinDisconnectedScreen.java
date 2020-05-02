@@ -47,7 +47,7 @@ public class MixinDisconnectedScreen extends Screen {
     public void tick() {
 
         reconnectButton.setMessage(
-                "Reconnect (Auto reconnect in " + Math.ceil(reconnectTimer / 20.0) + "s)"
+                "Reconnect (Auto reconnect in " + String.format("%.2f", reconnectTimer / 20.0) + "s)"
         );
 
         reconnectTimer--;
