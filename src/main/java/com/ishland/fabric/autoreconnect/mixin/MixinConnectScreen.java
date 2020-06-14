@@ -1,6 +1,7 @@
 package com.ishland.fabric.autoreconnect.mixin;
 
 import com.ishland.fabric.autoreconnect.LastServerUtils;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ConnectScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.network.ServerInfo;
@@ -22,11 +23,15 @@ public class MixinConnectScreen extends Screen {
             method = "connect"
     )
     private void onConnect(String address, int port, CallbackInfo ci) {
-        LastServerUtils.setLastServer(new ServerInfo(
-                "AutoReconnectFabric Last Server",
-                address + ":" + port,
-                false
-        ));
+        final ServerInfo currentServerEntry = MinecraftClient.getInstance().getCurrentServerEntry();
+        if (currentServerEntry == null)
+            LastServerUtils.setLastServer(new ServerInfo(
+                    "AutoReconnectFabric Last Server",
+                    address + ":" + port,
+                    false
+            ));
+        else
+            LastServerUtils.setLastServer(currentServerEntry);
     }
 
 }
