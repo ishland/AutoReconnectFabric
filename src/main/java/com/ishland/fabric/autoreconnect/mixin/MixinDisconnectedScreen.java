@@ -4,6 +4,7 @@ import com.ishland.fabric.autoreconnect.LastServerUtils;
 import net.minecraft.client.gui.screen.DisconnectedScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,7 +39,8 @@ public class MixinDisconnectedScreen extends Screen {
         int backButtonY = Math.min(height / 2 + reasonHeight / 2 + 9, height - 30);
 
         reconnectButton = addButton(new ButtonWidget(backButtonX, backButtonY + 24,
-                200, 20, "Reconnect", b -> LastServerUtils.reconnect(parent)));
+                200, 20, new LiteralText("Reconnect"),
+                b -> LastServerUtils.reconnect(parent)));
 
         reconnectTimer = 120;
     }
@@ -47,7 +49,10 @@ public class MixinDisconnectedScreen extends Screen {
     public void tick() {
 
         reconnectButton.setMessage(
-                "Reconnect (Auto reconnect in " + String.format("%.2f", reconnectTimer / 20.0) + "s)"
+                new LiteralText(
+                        "Reconnect (Auto reconnect in " +
+                                String.format("%.2f", reconnectTimer / 20.0) + "s)"
+                )
         );
 
         reconnectTimer--;
